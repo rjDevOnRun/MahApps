@@ -1,0 +1,185 @@
+﻿<mah:MetroWindow x:Class="MahApps.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                mc:Ignorable="d"
+                 Title="Wpf Main Window with Mahapps themes" Height="720" Width="1080"
+                 BorderBrush="{DynamicResource MahApps.Brushes.Accent}"
+                 BorderThickness="2"
+                 ResizeMode="CanResizeWithGrip"
+                 WindowStartupLocation="CenterScreen"
+                 TitleCharacterCasing="Normal"
+                 TitleBarHeight="40"
+                 ShowMaxRestoreButton="True"
+                 WindowButtonCommandsOverlayBehavior="Flyouts"
+                 IconOverlayBehavior="Flyouts">
+    <!--GlowBrush="{DynamicResource MahApps.Brushes.Accent}"-->
+    <mah:MetroWindow.LeftWindowCommands>
+        <mah:WindowCommands>
+            <Button x:Name="btnGitHubSite" ToolTip="Open up the GitHub site">
+                <iconPacks:PackIconModern Width="22"
+                                  Height="22"
+                                  Kind="VectorGroup" />
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.LeftWindowCommands>
+
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Label Content="{Binding Path=Employee.Email}"
+                   ToolTip="{Binding Path=Employee}"
+                   VerticalAlignment="Center"
+                   Margin="0 0 10 0">
+                <Label.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconModern
+                                Foreground="{StaticResource MahApps.Brushes.Gray}"
+                                VerticalAlignment="Center" Kind="User" />
+
+                            <TextBlock
+                                Margin="4 0 0 0"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource MahApps.Brushes.Gray}"
+                                Text="{Binding}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </Label.ContentTemplate>
+            </Label>
+
+            <ComboBox ItemsSource="{Binding LstTheme}"
+                      SelectedItem="{Binding SelectedTheme}"
+                      Width="100" Height="30"
+                      Background="Transparent"
+                BorderBrush="Transparent"
+                BorderThickness="0">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding DataContext.ApplyThemeCommand,RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="15" Height="15" Fill="{Binding Value}" />
+                            <TextBlock Text="{Binding Name}" Margin="2" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <ComboBox
+                ItemsSource="{Binding LstColor}"
+                SelectedItem="{Binding SelectedColor}"
+
+                 Width="100" Height="30"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                BorderThickness="0">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding DataContext.ApplyColorCommand,RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="15" Height="15" Fill="{Binding Value}" />
+                            <TextBlock Text="{Binding Name}" Margin="2" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Button x:Name="btnCupCakes"
+                    Content="Deploy CupCakes">
+                <Button.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconModern Width="22"
+                                        Height="22"
+                                        VerticalAlignment="Center"
+                                        Kind="FoodCupcake" />
+                            <TextBlock Margin="4 0 0 0"
+                         VerticalAlignment="Center"
+                         Text="{Binding}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </Button.ContentTemplate>
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button
+                x:Name="btnFlyout"
+                Height="50" Width="100"
+                Margin="20"
+                >Open Flyout</Button>
+            <Button x:Name="btnTest"
+                    Height="50" Width="100"
+                    >See Message</Button>
+            <Button x:Name="btnAccentSquare"
+                    Height="50" Margin="10 0"
+                    Style="{StaticResource MahApps.Styles.Button.MetroSquare.Accent}"
+                    >Accecented Square</Button>
+
+            <Button x:Name="btnAccent1"
+                    Height="50" Margin="10 0"
+                    Style="{StaticResource MahApps.Styles.Button.FlipView.Navigation}"
+                    >Accecented Square</Button>
+        </StackPanel>
+
+        <StackPanel  Grid.Row="1">
+            <TextBox x:Name="txtMain" mah:TextBoxHelper.ClearTextButton="True"
+                     mah:TextBoxHelper.Watermark="watermark text!"
+                     mah:TextBoxHelper.TextButton="True"
+                     Width="300" Height="30" Margin="20"
+                     ></TextBox>
+
+            <ComboBox Height="50" Width="150">
+                <ComboBoxItem Content="Item 1" />
+                <ComboBoxItem Content="Item 2" />
+                <ComboBoxItem Content="Item 3" />
+            </ComboBox>
+
+            <mah:ColorPicker Width="250" Margin="20"></mah:ColorPicker>
+
+            <mah:MetroProgressBar
+                Width="250"
+                Value="50"
+                Maximum="100" Height="25"
+                IsIndeterminate="True"
+                                  ></mah:MetroProgressBar>
+
+            <mah:ProgressRing IsActive="True"></mah:ProgressRing>
+        </StackPanel>
+
+        <mah:FlyoutsControl>
+            <mah:Flyout
+                x:Name="foUpdate"
+                Height="32"
+                Theme="Accent"
+                FontSize="12"
+                Foreground="Yellow"
+                CloseButtonVisibility="Collapsed"
+                Position="Top"
+                AutoCloseInterval="3000"
+                IsAutoCloseEnabled="True">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                           Text="{Binding}" />
+            </mah:Flyout>
+        </mah:FlyoutsControl>
+    </Grid>
+</mah:MetroWindow>
