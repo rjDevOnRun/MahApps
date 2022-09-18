@@ -81,14 +81,16 @@
                 BorderThickness="0">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction Command="{Binding DataContext.ApplyColorCommand,RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" />
+                        <i:InvokeCommandAction Command="{Binding DataContext.ApplyColorCommand,
+                            RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <Ellipse Width="15" Height="15" Fill="{Binding Value}" />
-                            <TextBlock Text="{Binding Name}" Margin="2" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Name}" Margin="2"
+                                       VerticalAlignment="Center" />
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
@@ -128,6 +130,11 @@
             <Button x:Name="btnTest"
                     Height="50" Width="100"
                     >See Message</Button>
+
+            <Button x:Name="btnShowModal"
+                    Height="50" Margin="10 0"
+                    >Show Modal</Button>
+
             <Button x:Name="btnAccentSquare"
                     Height="50" Margin="10 0"
                     Style="{StaticResource MahApps.Styles.Button.MetroSquare.Accent}"

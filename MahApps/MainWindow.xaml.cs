@@ -1,8 +1,6 @@
 ﻿using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
 using MahApps.ViewModels;
-using System.Diagnostics;
-using System.Windows;
+using MahApps.Views;
 
 namespace MahApps
 {

@@ -1,6 +1,7 @@
 ﻿using ControlzEx.Theming;
 using MahApps.Metro.Controls.Dialogs;
 using MahApps.Models;
+using MahApps.Views;
 using Microsoft.VisualStudio.PlatformUI;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -175,11 +176,18 @@ namespace MahApps.ViewModels
             _mainWindow.btnGitHubSite.Click += BtnGitHubSite_Click;
             _mainWindow.btnFlyout.Click += BtnFlyout_Click;
             _mainWindow.btnTest.Click += BtnTest_Click;
+            _mainWindow.btnShowModal.Click += BtnShowModal_Click;
+        }
+
+        private void BtnShowModal_Click(object sender, RoutedEventArgs e)
+        {
+            ModalWindow modalWindow = new ModalWindow();
+            modalWindow.ShowDialog();
         }
 
         private void BtnTest_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            MessageDisplayAsync();
+            _ = Task.Run(() => MessageDisplayAsync());
         }
 
         private async Task MessageDisplayAsync()
